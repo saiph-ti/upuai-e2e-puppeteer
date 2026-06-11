@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 const server = http.createServer(async (req, res) => {
   if (req.url === '/shot') {
     try {
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-dev-shm-usage"] });
       const page = await browser.newPage();
       await page.setContent('<h1>upuai e2e puppeteer</h1>');
       const png = await page.screenshot({ type: 'png' });
